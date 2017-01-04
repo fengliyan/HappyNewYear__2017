@@ -1,0 +1,458 @@
+/*all tag*/
+*{
+	margin: 0px;
+	padding: 0px;
+	/*可设置字体大小随视窗的宽度变化；vw:相对视窗的宽度，视窗宽度100vw；vh:相对视窗的高度，视窗高度100vh*/
+	font-size: 1.5625vw;
+	font-family: 'Microsoft Yahei';
+}
+/*html5中，html和body是块元素，高度默认0*/
+html,body{
+	height:100%;
+
+	overflow: hidden;
+}
+
+/*music*/
+#music{
+	/*music相对浏览器窗口固定的，在3个页面中位置都不会变化*/
+	position: fixed;
+	top:3vh;
+	right:4vw;
+	/*层级设置较高*/
+	z-index: 5;
+	width:15vw;
+	height: 15vh;
+	border: 4px solid #ef1639;
+	border-radius: 50%;
+	background: #fff;
+}
+/*#music>img 直接子元素*/
+#music > img:first-of-type{
+	/*碟片转时，指针在上，碟片在下*/
+	z-index: 0;
+	position: absolute;
+	width:79%;
+	/*下面几行代码表示居中*/
+	top:0;
+	right:0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+#music > img:last-of-type{
+	/*碟片转时，指针在上，碟片在下*/
+	z-index: 1;
+	position: absolute;
+	top:24%;
+	right: 2.5%;
+	width: 28.421%;
+}
+/*动画效果，第一张图片旋转*/
+#music img.play{
+	-webkit-animation:music_disc 4s linear infinite;
+	        animation:music_disc 4s linear infinite;
+}
+@-webkit-keyframes music_disc{
+	0%{
+		-webkit-transform:rotate(0deg);
+		        transform:rotate(0deg);
+	}
+	100%{
+		-webkit-transform:rotate(360deg);
+		         transform:rotate(360deg);
+	}
+}
+@keyframes music_disc{
+	0%{
+		-webkit-transform:rotate(0deg);
+		        transform:rotate(0deg);
+	}
+	100%{
+		-webkit-transform:rotate(360deg);
+		         tranform:rotate(360deg);
+	}   
+}
+/*page_bg*/
+.page{
+    /*3个页面是重叠的，设置为absoulte后，使width:100%*/
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+/*设置高度100%，需设置父元素height:100%,html body height:100%*/
+.page > .bg{
+	position: absolute;
+	z-index: -1;
+	width:100%;
+	height:100%;
+}
+
+/*page1*/
+#page1{
+	display: block;
+}
+#page1>.bg{
+	background: url(../img/p1_bg.jpg) no-repeat center center;
+	/*占据100%*/
+	background-size: 100%;
+}
+
+#page1>.p1_lantern{
+	position: absolute;
+	 /*确定位置*/
+	top:-3.4%;
+   /*左右居中*/
+	right: 0;
+	left: 0;
+	margin: auto;
+
+	background: url(../img/p1_lantern.png) no-repeat center bottom;
+	width: 45vw;
+	height: 71.2vh;
+    font-size:2.506rem;
+    /*让文字距顶部一段距离*/
+    padding-top: 28vh;
+    /*width height包括padding border*/
+    /*特殊的属性，考虑到兼容性；webkit moz火狐 msIE浏览器  o Operal*/
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+    text-align: center;
+    color:#fff;
+}
+/*在对象前显示内容*/
+#page1>.p1_lantern:before{
+	/*一定要有*/
+	content: '';
+	position: absolute;
+	z-index: -1;
+	/*居中*/
+	top:0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin:auto;
+
+	width:30vw;
+	height:30vw;
+	background: #d60b3b;
+	opacity: 0.5;
+	/*阴影*/
+    -webkit-box-shadow: 0 0 10vw 10vw #d60b3b;
+    -moz-box-shadow: 0 0 10vw 10vw #d60b3b;
+    -ms-box-shadow: 0 0 10vw 10vw #d60b3b;
+    -o-box-shadow: 0 0 10vw 10vw #d60b3b;
+    box-shadow: 0 0 10vw 10vw #d60b3b;
+
+/*动画，灯笼闪烁：0.5s一周期，反复，反向*/
+    -webkit-animation:p1_lantern 0.5s infinite alternate;
+            animation:p1_lantern 0.5s infinite alternate;
+}
+@-webkit-keyframes p1_lantern{
+	0%{
+		opacity:0.5;
+		/*缩放，水平方向80% 竖直方向80%*/
+		-webkit-transform:scale(0.8,0.8);
+		      transform:scale(0.8,0.8);
+	}
+	100%{
+		opacity:1;
+	}
+}
+@keyframes p1_lantern{
+	0%{
+		opacity:0.5;
+		-webkit-transform:scale(0.8,0.8);
+		      transform:scale(0.8,0.8);
+	}
+	100%{
+		opacity:1;
+	}
+}
+#page1>.p1_imooc{
+	position: absolute;
+	/*确定位置*/
+	bottom: 9vh;
+	/*水平居中*/
+	right: 0;
+	left: 0;
+	margin:auto;
+
+	width: 27vw;
+	height: 18vh;
+	background: url(../img/p1_imooc.png) no-repeat center center;
+    background-size: 100%;
+}
+#page1>.p1_words{
+	position: absolute;
+	bottom: 20px;
+	right: 0;
+	left:0;
+	margin: auto;
+	text-align: center;
+	font-size: 1.834rem;
+	color: #231815;
+}
+/*page2*/
+#page2{
+	display:none;
+	/*消失时，有个过渡*/
+	-webkit-transition:2s;
+	transition:2s;
+	
+}
+/*第2页消失的场景，从下向上移动100%;向上滚动时，会超出body，所以在body上加overflow:hidden*/
+.fadeOut{
+	opacity: 0.3;
+	-webkit-transform:translate(0,-100%);
+	transform:translate(0,-100%);
+}
+#page2>.bg{
+	background: url(../img/p2_bg.jpg) no-repeat center center;
+	background-size: 100%;
+}
+/*#page2>.loading{
+    z-index: 5;
+	background:green;
+	forwards表示执行一次，执行到最后
+   -webkit-animation:loading 4s linear forwards;
+           animation:loading 4s linear forwards;
+}
+@-webkit-keyframes loading{
+	0%{
+		opacity:1;
+	}
+	100%{
+	
+		opacity:0;
+	}
+}
+@keyframes loading{
+	0%{
+		opacity:1;
+	}
+	100%{
+	
+		opacity:0;
+	}
+}*/
+#page2>.p2_circle{
+    position: absolute;
+    width:61vw ;
+    height: 60vw;
+    background: url(../img/p2_circle_outer.png) no-repeat center center;
+    background-size: 100%;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+/*动画：名称 周期 匀速 延时  重复*/
+    -webkit-animation:p2_circle_outer 1s linear 2s infinite;
+           animation:p2_circle_outer 1s linear 2s infinite;
+}
+@-webkit-keyframes p2_circle_outer{
+	0%{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	100%{
+		/*逆时针转1圈*/
+		-webkit-transform:rotate(-360deg);
+		transform:rotate(-360deg);
+	}
+}
+@keyframes p2_circle_outer{
+	0%{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	100%{
+		/*逆时针转1圈*/
+		-webkit-transform:rotate(-360deg);
+		transform:rotate(-360deg);
+	}
+}
+#page2>.p2_circle:before{
+	content: "";
+    position: absolute;
+    width:50vw ;
+    height: 50vw;
+    background: url(../img/p2_circle_middle.png) no-repeat center center;
+    background-size: 100%;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    /*动画：名称 周期 匀速 延时  重复*/
+    -webkit-animation:p2_circle_middle 1s linear 2s infinite;
+           animation:p2_circle_middle 1s linear 2s infinite;
+}
+@-webkit-keyframes p2_circle_middle{
+	0%{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	100%{
+		/*顺时针转2圈*/
+		-webkit-transform:rotate(720deg);
+		transform:rotate(720deg);
+	}
+}
+@keyframes p2_circle_middle{
+	0%{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	100%{
+		/*顺时针转2圈*/
+		-webkit-transform:rotate(720deg);
+		transform:rotate(720deg);
+	}
+}
+#page2>.p2_circle:after{
+	content: "";
+    position: absolute;
+    width:40vw ;
+    height: 40vw;
+    background: url(../img/p2_circle_inner.png) no-repeat center center;
+    background-size: 100%;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+/*动画：名称 周期 匀速 延时  重复*/
+    -webkit-animation:p2_circle_inner 1s linear 1s infinite;
+           animation:p2_circle_inner 1s linear 1s infinite;
+}
+@-webkit-keyframes p2_circle_inner{
+	0%{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	100%{
+		/*逆时针转3圈*/
+		-webkit-transform:rotate(-1080deg);
+		transform:rotate(-1080deg);
+	}
+}
+@keyframes p2_circle_inner{
+	0%{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	100%{
+		/*逆时针转3圈*/
+		-webkit-transform:rotate(-1080deg);
+		transform:rotate(-1080deg);
+	}
+}
+#page2>.p2_2017{
+    position: absolute;
+    width:30vw ;
+    height: 30vw;
+    background: url(../img/p2_2017.jpg) no-repeat center center;
+    background-size: 100%;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+/*page3*/
+#page3{
+	display: none;
+	-webkit-transition:2s;
+	transition:2s;
+}
+.fadeIn{
+	/*效果由下向上*/
+	-webkit-transform:translate(0,-100%);
+	transform:translate(0,-100%);
+
+}
+#page3>.bg{
+	background: url(../img/p3_bg.jpg) no-repeat center center;
+	background-size: 100%;
+}
+/*#page3>.p3_logo{
+	position: absolute;
+	top:7.82vh;
+	left:0;
+	right: 0;
+	margin: auto;
+	width: 34vw;
+	height: 8vh;
+	background:url(../img/p3_logo.png) no-repeat center center;
+	background-size: 100%;
+}*/
+#page3>.p3_title{
+	position: absolute;
+	top:21vh;
+	left:0;
+	right: 0;
+	margin: auto;
+	width: 48vw;
+	height: 50vh;
+	background:url(../img/p3_newyear.png) no-repeat center center;
+	
+}
+#page3>.p3_first{
+	position: absolute;
+	top:20vh;
+	left:3.75;
+	width: 22vw;
+	height: 80vh;
+	background:url(../img/p3_couplet_first.png) no-repeat center center;
+	
+}
+#page3>.p3_second{
+	position: absolute;
+	top:20vh;
+	right:3.75vw;
+	width: 18vw;
+	height: 80vh;
+	background:url(../img/p3_couplet_second.png) no-repeat center center;
+	
+}
+#page3>.p3_blessing{
+	position: absolute;
+	bottom:7px;
+	left:0;
+	right: 0;
+	margin: auto;
+	width: 18vw;
+	height: 25vh;
+	background:url(../img/p3_blessing.png) no-repeat center center;
+	background-size: 80%;
+ -webkit-animation:p3_blessing 2s linear infinite;
+           animation:p3_blessing 2s linear infinite;
+}
+@-webkit-keyframes p3_blessing{
+	0%{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	100%{
+		/*顺时针转2圈*/
+		-webkit-transform:rotate(720deg);
+		transform:rotate(720deg);
+	}
+}
+@keyframes p3_blessing{
+	0%{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+	}
+	100%{
+		/*顺时针转2圈*/
+		-webkit-transform:rotate(720deg);
+		transform:rotate(720deg);
+	}
+}
